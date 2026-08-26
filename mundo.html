@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Campaña — Pergamino Sagrado</title>
+<meta name="theme-color" content="#12102A" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/world.css" />
+</head>
+<body>
+<div id="page">
+
+  <header class="topbar">
+    <h1>Campaña</h1>
+    <div class="resources">
+      <div class="resource-chip">💎 <span id="res-gems">120</span></div>
+      <div class="resource-chip">🪙 <span id="res-gold">2.4k</span></div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <!-- Vista de lista de mazmorras -->
+    <div id="worlds-view" class="worlds-view">
+      <div class="section-title">Mazmorras Disponibles</div>
+      <div id="worlds-list"></div>
+    </div>
+
+    <!-- Vista de presentación del jefe / selección de campeón (inicialmente oculta) -->
+    <div id="world-intro-view" class="world-intro-view" style="display: none;">
+      <div class="battle-header">
+        <button class="battle-back-btn" id="intro-back">← Volver</button>
+        <h2 id="intro-title"></h2>
+      </div>
+
+      <div class="boss-hero">
+        <img id="intro-boss-img" src="" alt="" />
+      </div>
+
+      <div class="boss-intro-panels">
+        <div class="intro-panel intro-panel-stats">
+          <div class="intro-boss-name" id="intro-boss-name"></div>
+          <div class="intro-boss-resist">♾️ Resistencia Divina Infinita</div>
+          <div class="intro-boss-fury" id="intro-boss-fury">🔥 Furia: x1.00</div>
+          <div class="intro-hp-bar"></div>
+          <div class="intro-hp-label">♾️ Ilimitada</div>
+        </div>
+        <div class="intro-panel intro-panel-lore">
+          <div class="intro-panel-title">Sobre el Jefe</div>
+          <p class="intro-boss-desc" id="intro-boss-desc"></p>
+        </div>
+      </div>
+
+      <button class="btn-start-battle" id="intro-start-battle">Selecciona un campeón</button>
+      <div class="intro-hint">¡Prepárate para la batalla!</div>
+
+      <div class="section-title intro-champs-title">Tus Campeones</div>
+      <div class="intro-champs-grid" id="intro-champs-grid"></div>
+
+      <div class="intro-footer-banner">
+        <p id="intro-footer-text"></p>
+      </div>
+    </div>
+
+    <!-- Vista de combate (inicialmente oculta) -->
+    <div id="battle-view" class="battle-view" style="display: none;">
+      <div class="battle-header">
+        <button class="battle-back-btn" id="battle-back">← Volver</button>
+        <h2 id="battle-title"></h2>
+      </div>
+
+      <!-- Panel de daño acumulado / recompensa estimada / retirada -->
+      <div class="battle-stats-bar" id="battle-stats-bar" style="display: none;">
+        <div class="stats-info">
+          <span class="stat-chip">💥 Daño: <b id="total-damage">0</b></span>
+          <span class="stat-chip">💎 <b id="est-gems">0</b></span>
+          <span class="stat-chip">🪙 <b id="est-gold">0</b></span>
+        </div>
+        <button class="btn-retreat" id="battle-retreat">🏳️ Retirarse y cobrar</button>
+      </div>
+
+      <div class="battle-arena">
+        <!-- Boss -->
+        <div class="battle-side boss-side">
+          <div class="boss-info">
+            <div class="boss-name" id="boss-name"></div>
+            <div class="boss-status">♾️ Resistencia Divina Infinita</div>
+            <div class="boss-fury" id="boss-fury">🔥 Furia: x1.00</div>
+            <div class="boss-hp-bar">
+              <div class="hp-fill infinite" id="boss-hp-fill"></div>
+            </div>
+            <div class="hp-text" id="boss-hp-text">♾️ Ilimitada</div>
+          </div>
+          <div class="boss-art" id="boss-art"></div>
+        </div>
+
+        <!-- Separador -->
+        <div class="battle-divider">⚔️</div>
+
+        <!-- Equipo del jugador -->
+        <div class="battle-side player-side">
+          <!-- Estado del campeón elegido (aparece tras seleccionar) -->
+          <div class="player-info" id="player-info" style="display: none;">
+            <div class="player-name" id="player-card-name"></div>
+            <div class="player-hp-bar">
+              <div class="hp-fill-player" id="player-hp-fill" style="width: 100%;"></div>
+            </div>
+            <div class="hp-text" id="player-hp-text">0 / 0</div>
+          </div>
+
+          <div class="team-selector" id="team-selector">
+            <div class="team-label">Selecciona tu campeón:</div>
+            <div class="team-cards" id="team-cards"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registro de combate -->
+      <div class="battle-log" id="battle-log"></div>
+
+      <!-- Resultado del combate -->
+      <div id="battle-result" class="battle-result" style="display: none;">
+        <div class="result-content">
+          <div class="result-status" id="result-status"></div>
+          <div class="result-rewards" id="result-rewards"></div>
+          <button class="btn-primary" id="result-continue">Continuar</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="bottomnav">
+    <a class="nav-btn" href="index.html"><span class="ico">🏠</span>Inicio</a>
+    <a class="nav-btn" href="cartas.html"><span class="ico">🎴</span>Cartas</a>
+    <a class="nav-btn" href="cofres.html"><span class="ico">📜</span>Cofres</a>
+    <a class="nav-btn" href="equipo.html"><span class="ico">⚔️</span>Equipo</a>
+    <a class="nav-btn active" href="mundo.html"><span class="ico">🗺️</span>Mundo</a>
+    <a class="nav-btn" href="preguntas.html"><span class="ico">📖</span>Quiz</a>
+  </nav>
+</div>
+
+<!-- Conexiones necesarias -->
+<script src="js/data/worlds.js"></script>
+<script src="js/data/bosses.js"></script>
+<script src="js/data/cards.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/world.js"></script>
+</body>
+</html>

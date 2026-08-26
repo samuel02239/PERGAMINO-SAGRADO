@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Pergamino Sagrado</title>
+<meta name="theme-color" content="#12102A" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+<div id="page">
+
+  <header class="topbar">
+    <h1>Pergamino Sagrado</h1>
+    <div class="resources">
+      <div class="resource-chip">💎 <span id="res-gems">120</span></div>
+      <div class="resource-chip">🪙 <span id="res-gold">2.4k</span></div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="hero">
+      <div class="hero-emblem">✝️</div>
+      <h2>El Pergamino te espera</h2>
+      <p>"Jehová no salva con espada y con lanza…"</p>
+    </div>
+
+    <div class="world-progress">
+      <div class="wp-head"><span>Mundo 3 · Conquista</span><span>Nivel 7/12</span></div>
+      <div class="wp-bar"><div class="wp-fill" style="width:58%"></div></div>
+    </div>
+
+    <div class="quick-actions">
+      <a class="qa-btn" href="cofres.html"><span class="qa-icon">📜</span><span class="qa-label">Abrir cofre</span></a>
+      <a class="qa-btn" href="equipo.html"><span class="qa-icon">⚔️</span><span class="qa-label">Mi equipo</span></a>
+      <a class="qa-btn" href="cartas.html"><span class="qa-icon">🎴</span><span class="qa-label">Colección</span></a>
+      <a class="qa-btn" href="mundo.html"><span class="qa-icon">🗺️</span><span class="qa-label">Campaña</span></a>
+      <a class="qa-btn qa-wide" href="preguntas.html"><span class="qa-icon">📖</span><span class="qa-label">Preguntas bíblicas — Gana monedas y gemas</span></a>
+    </div>
+  </main>
+
+  <nav class="bottomnav">
+    <a class="nav-btn active" href="index.html"><span class="ico">🏠</span>Inicio</a>
+    <a class="nav-btn" href="cartas.html"><span class="ico">🎴</span>Cartas</a>
+    <a class="nav-btn" href="cofres.html"><span class="ico">📜</span>Cofres</a>
+    <a class="nav-btn" href="equipo.html"><span class="ico">⚔️</span>Equipo</a>
+    <a class="nav-btn" href="mundo.html"><span class="ico">🗺️</span>Campaña</a>
+    <a class="nav-btn" href="preguntas.html"><span class="ico">📖</span>Quiz</a>
+  </nav>
+</div>
+
+<!-- Conexiones necesarias: datos de cartas (para saber si hay colección) + estado global -->
+<script src="js/data/cards.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

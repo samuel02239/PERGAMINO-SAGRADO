@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Cofres — Pergamino Sagrado</title>
+<meta name="theme-color" content="#12102A" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/chests.css" />
+</head>
+<body>
+<div id="page">
+
+  <header class="topbar">
+    <h1>Cofres</h1>
+    <div class="resources">
+      <div class="resource-chip">💎 <span id="res-gems">120</span></div>
+      <div class="resource-chip">🪙 <span id="res-gold">2.4k</span></div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="section-title">Cofres disponibles</div>
+
+    <div class="list-row">
+      <div class="lr-icon">🪵</div>
+      <div class="lr-info"><div class="t">Cofre de Madera</div><div class="d">Comunes y poco comunes</div></div>
+      <div class="lr-actions">
+        <button class="lr-btn" onclick="ChestFlow.open('wood')">x1 · 🪙 1000</button>
+        <button class="lr-btn x10" onclick="ChestFlow.openMulti('wood', 10)">x10 · 🪙 10000</button>
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="lr-icon">🗝️</div>
+      <div class="lr-info"><div class="t">Cofre de Plata</div><div class="d">Mejores probabilidades</div></div>
+      <div class="lr-actions">
+        <button class="lr-btn" onclick="ChestFlow.open('silver')">x1 · 🪙 4000</button>
+        <button class="lr-btn x10" onclick="ChestFlow.openMulti('silver', 10)">x10 · 🪙 40000</button>
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="lr-icon">👑</div>
+      <div class="lr-info"><div class="t">Cofre del Rey</div><div class="d">Épicas, Legendarias y Míticas</div></div>
+      <div class="lr-actions">
+        <button class="lr-btn" onclick="ChestFlow.open('king')">x1 · 💎 500</button>
+        <button class="lr-btn x10" onclick="ChestFlow.openMulti('king', 10)">x10 · 💎 5000</button>
+      </div>
+    </div>
+
+    <div class="section-title">Garantías activas</div>
+    <div class="synergy-note"><b>Pity Épica+</b> — en <span id="pity-epic">9</span> aperturas más</div>
+    <div class="synergy-note"><b>Pity Legendaria+</b> — en <span id="pity-leg">49</span> aperturas más</div>
+
+    <div class="synergy-note gold-tip">💡 ¿Sin monedas? Ve a <a href="preguntas.html">Preguntas Bíblicas</a> para ganar más.</div>
+  </main>
+
+  <nav class="bottomnav">
+    <a class="nav-btn" href="index.html"><span class="ico">🏠</span>Inicio</a>
+    <a class="nav-btn" href="cartas.html"><span class="ico">🎴</span>Cartas</a>
+    <a class="nav-btn active" href="cofres.html"><span class="ico">📜</span>Cofres</a>
+    <a class="nav-btn" href="equipo.html"><span class="ico">⚔️</span>Equipo</a>
+    <a class="nav-btn" href="mundo.html"><span class="ico">🗺️</span>Mundo</a>
+    <a class="nav-btn" href="preguntas.html"><span class="ico">📖</span>Quiz</a>
+  </nav>
+
+  <!-- Overlay: Pergamino del Destino -->
+  <div class="pergamino-overlay" id="pergamino-overlay"></div>
+</div>
+
+<!-- Conexiones necesarias -->
+<script src="js/data/cards.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/core/gacha.js"></script>
+<script src="js/chests.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Preguntas Bíblicas — Pergamino Sagrado</title>
+<meta name="theme-color" content="#12102A" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/quiz.css" />
+</head>
+<body>
+<div id="page">
+
+  <header class="topbar">
+    <h1>Preguntas Bíblicas</h1>
+    <div class="resources">
+      <div class="resource-chip">💎 <span id="res-gems">120</span></div>
+      <div class="resource-chip">🪙 <span id="res-gold">2.4k</span></div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="quiz-progress">
+      <div class="qp-label">Racha hacia gemas: <span id="quiz-progress-count">0</span>/10</div>
+      <div class="qp-bar"><div class="qp-fill" id="quiz-progress-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="quiz-card" id="quiz-card">
+      <!-- Renderizado por js/quiz.js -->
+    </div>
+
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+  </main>
+
+  <nav class="bottomnav">
+    <a class="nav-btn" href="index.html"><span class="ico">🏠</span>Inicio</a>
+    <a class="nav-btn" href="cartas.html"><span class="ico">🎴</span>Cartas</a>
+    <a class="nav-btn" href="cofres.html"><span class="ico">📜</span>Cofres</a>
+    <a class="nav-btn" href="equipo.html"><span class="ico">⚔️</span>Equipo</a>
+    <a class="nav-btn" href="mundo.html"><span class="ico">🗺️</span>Mundo</a>
+    <a class="nav-btn active" href="preguntas.html"><span class="ico">📖</span>Quiz</a>
+  </nav>
+</div>
+
+<!-- Conexiones necesarias -->
+<script src="js/data/quiz-questions.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>

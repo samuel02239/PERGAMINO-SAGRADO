@@ -1,0 +1,61 @@
+/**
+ * css/chests.css — estilos exclusivos de cofres.html
+ */
+.synergy-note { background: var(--night-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; margin-bottom: 10px; font-size: 13px; }
+.synergy-note b { color: var(--gold-soft); font-family: var(--font-display); font-size: 12px; }
+.synergy-note.gold-tip { border-color: var(--gold); color: var(--ink-dim); }
+.synergy-note.gold-tip a { color: var(--gold-soft); }
+
+/* ── Fila de cofre con botones x1 / x10 ──────────────── */
+.lr-actions { display: flex; flex-direction: column; gap: 6px; align-items: stretch; }
+.lr-btn {
+  font-family: var(--font-display); font-size: 10.5px; letter-spacing: .3px;
+  background: var(--night-3); border: 1px solid var(--line); color: var(--gold-soft);
+  padding: 5px 10px; border-radius: 14px; cursor: pointer; white-space: nowrap;
+}
+.lr-btn:active { transform: scale(0.96); }
+.lr-btn.x10 { border-color: var(--gold); color: var(--night); background: var(--gold); font-weight: 700; }
+
+.pergamino-overlay { position: fixed; inset: 0; background: var(--night); z-index: 100; display: none; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 30px; overflow-y: auto; }
+.pergamino-overlay.active { display: flex; }
+.scroll-seal { width: 130px; height: 130px; border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 54px; background: radial-gradient(circle, var(--night-3), var(--night)); animation: pulse 1.4s ease-in-out infinite; cursor: pointer; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 rgba(212,175,55,0.4);} 50% { box-shadow: 0 0 40px rgba(212,175,55,0.5);} }
+.pergamino-overlay .tap-hint { margin-top: 18px; font-family: var(--font-display); font-size: 11px; letter-spacing: 2px; color: var(--ink-dim); text-transform: uppercase; }
+
+.reveal-rarity { font-family: var(--font-display-deco); font-size: 34px; color: var(--rarity-color, var(--gold)); opacity: 0; animation: reveal-in .6s ease forwards; text-shadow: 0 0 20px var(--rarity-color, var(--gold)); }
+.reveal-card { margin-top: 22px; opacity: 0; animation: reveal-in .6s ease .4s forwards; }
+@keyframes reveal-in { from { opacity:0; transform: scale(0.7) translateY(10px);} to { opacity:1; transform:none; } }
+.reveal-card .cd-art { width: 200px; height: 260px; border-radius: 16px; border: 2px solid var(--rarity-color, var(--gold)); margin: 0 auto; }
+.reveal-card .name { font-family: var(--font-display); color: var(--ink); margin-top: 10px; }
+.reveal-continue { margin-top: 24px; font-family: var(--font-display); font-size: 12px; letter-spacing: 1px; background: var(--gold); color: var(--night); border: none; padding: 10px 26px; border-radius: 24px; cursor: pointer; }
+
+/* ── Revelación múltiple (Invocación x10) ────────────── */
+.reveal-title-multi {
+  font-family: var(--font-display); font-size: 15px; letter-spacing: 2px;
+  color: var(--gold-soft); text-transform: uppercase; opacity: 0;
+  animation: reveal-in .5s ease forwards;
+}
+.reveal-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+  margin-top: 16px; max-width: 420px; width: 100%;
+  opacity: 0; animation: reveal-in .5s ease .2s forwards;
+}
+.reveal-grid-item {
+  aspect-ratio: 5/8; border-radius: 10px; overflow: hidden; position: relative;
+  border: 1.5px solid var(--rarity-color, var(--gold));
+  background: linear-gradient(155deg, var(--night-3), var(--night));
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.reveal-grid-item .cd-art {
+  width: auto; height: auto; flex: 1; border-radius: 0; border: none;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--rarity-color, var(--gold)) 22%, transparent), transparent 70%);
+}
+.reveal-grid-item .rg-foot { background: rgba(0,0,0,0.6); padding: 3px 3px 4px; text-align: center; border-top: 1px solid var(--line); }
+.reveal-grid-item .rg-name { font-family: var(--font-display); font-size: 8px; color: var(--ink); line-height: 1.2; }
+.reveal-grid-item .rg-tag { position: absolute; top: 3px; left: 3px; font-size: 7px; font-family: var(--font-display); background: var(--rarity-color, var(--gold)); color: #12102A; padding: 1px 4px; border-radius: 4px; font-weight: 700; }
+.reveal-grid-item .rg-new { position: absolute; top: 3px; right: 3px; font-size: 7px; font-family: var(--font-display); background: var(--blood); color: var(--ink); padding: 1px 4px; border-radius: 4px; font-weight: 700; }
+
+@media (max-width: 360px) {
+  .reveal-grid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+}

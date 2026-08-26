@@ -1,0 +1,24 @@
+/**
+ * css/quiz.css — estilos exclusivos de preguntas.html
+ */
+.quiz-progress { background: var(--night-2); border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; margin: 14px 0 18px; }
+.qp-label { font-family: var(--font-display); font-size: 11px; color: var(--gold-soft); letter-spacing: .5px; margin-bottom: 8px; }
+.qp-bar { height: 8px; background: rgba(255,255,255,0.07); border-radius: 5px; overflow: hidden; }
+.qp-fill { height: 100%; background: linear-gradient(90deg, var(--gold), #F4E4A6); transition: width .3s ease; }
+
+.quiz-card { background: var(--night-2); border: 1px solid var(--line); border-radius: 16px; padding: 22px 18px; text-align: center; }
+.quiz-verse-badge { display: inline-block; font-family: var(--font-display); font-size: 10px; letter-spacing: 1px; color: var(--gold); border: 1px solid var(--line); border-radius: 20px; padding: 3px 10px; margin-bottom: 14px; text-transform: uppercase; }
+.quiz-question { font-family: var(--font-display); font-size: 17px; color: var(--ink); line-height: 1.5; margin-bottom: 20px; }
+
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { background: var(--night); border: 1.5px solid var(--line); color: var(--ink); font-family: var(--font-body); font-size: 15px; padding: 12px 14px; border-radius: 10px; cursor: pointer; text-align: left; }
+.quiz-option:active { transform: scale(0.98); }
+.quiz-option.correct { border-color: #4CAF50; background: rgba(76,175,80,0.15); }
+.quiz-option.wrong { border-color: var(--blood); background: rgba(139,46,46,0.2); }
+.quiz-option[disabled] { pointer-events: none; }
+
+.quiz-feedback { text-align: center; margin-top: 18px; }
+.quiz-feedback .fb-verse { color: var(--gold-soft); font-style: italic; font-size: 13px; margin-bottom: 14px; }
+.quiz-next-btn { font-family: var(--font-display); font-size: 12px; letter-spacing: 1px; background: var(--gold); color: var(--night); border: none; padding: 10px 26px; border-radius: 24px; cursor: pointer; }
+
+.quiz-bonus-banner { background: var(--night-2); border: 1.5px solid var(--gold); border-radius: 14px; padding: 16px; text-align: center; margin-top: 14px; font-family: var(--font-display); color: var(--gold-soft); font-size: 13px; }

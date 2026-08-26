@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Equipo — Pergamino Sagrado</title>
+<meta name="theme-color" content="#12102A" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/team.css" />
+</head>
+<body>
+<div id="page">
+
+  <header class="topbar">
+    <h1>Equipo</h1>
+    <div class="resources">
+      <div class="resource-chip">💎 <span id="res-gems">120</span></div>
+      <div class="resource-chip">🪙 <span id="res-gold">2.4k</span></div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="section-title">Tu equipo (5)</div>
+    <div class="team-slots" id="team-slots"></div>
+
+    <div class="section-title">Sinergias activas</div>
+    <div id="synergy-list"></div>
+
+    <div class="section-title">Elige de tu colección</div>
+    <div class="card-grid" id="team-pool-grid"></div>
+  </main>
+
+  <nav class="bottomnav">
+    <a class="nav-btn" href="index.html"><span class="ico">🏠</span>Inicio</a>
+    <a class="nav-btn" href="cartas.html"><span class="ico">🎴</span>Cartas</a>
+    <a class="nav-btn" href="cofres.html"><span class="ico">📜</span>Cofres</a>
+    <a class="nav-btn active" href="equipo.html"><span class="ico">⚔️</span>Equipo</a>
+    <a class="nav-btn" href="mundo.html"><span class="ico">🗺️</span>Mundo</a>
+    <a class="nav-btn" href="preguntas.html"><span class="ico">📖</span>Quiz</a>
+  </nav>
+
+  <!-- Modal de detalle (compartido con cartas.html vía core/cardModal.js) -->
+  <div class="modal-backdrop" id="card-modal" onclick="if(event.target===this) CardModal.close()">
+    <div class="card-detail" id="card-modal-content"></div>
+  </div>
+</div>
+
+<!-- Conexiones necesarias -->
+<script src="js/data/cards.js"></script>
+<script src="js/data/synergies.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/core/cardModal.js"></script>
+<script src="js/team.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+/**
+ * css/cards.css — estilos exclusivos de cartas.html
+ * (El grid de tarjetas y el modal viven en base.css porque los reutiliza
+ * también equipo.html. Aquí solo lo que es único de esta pantalla.)
+ */
+#collection-grid { padding-bottom: 10px; }

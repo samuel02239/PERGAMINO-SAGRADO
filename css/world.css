@@ -1,0 +1,948 @@
+/**
+ * css/world.css
+ * Estilos para el sistema de mazmorras y combate
+ */
+
+/* ─────────────────────────────────────────────────────────────
+   VISTA DE LISTA DE MAZMORRAS
+   ───────────────────────────────────────────────────────────── */
+
+.worlds-view { animation: fadeIn 0.4s ease-out; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.world-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: linear-gradient(135deg, var(--night-2), var(--night-3));
+  border: 2px solid var(--gold);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.world-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 0%, rgba(212,175,55,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.world-card:active {
+  transform: scale(0.96);
+}
+
+.world-card.locked-world {
+  opacity: 0.45;
+  filter: grayscale(0.7);
+  cursor: not-allowed;
+  border-color: var(--ink-dim);
+}
+
+.wc-icon {
+  font-size: 48px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wc-info {
+  flex: 1;
+}
+
+.wc-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--gold-soft);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.wc-theme {
+  font-size: 12px;
+  color: var(--gold);
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+.wc-desc {
+  font-size: 11px;
+  color: var(--ink-dim);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.wc-unlock {
+  font-size: 10px;
+  color: var(--gold-soft);
+  font-family: var(--font-display);
+}
+
+.wc-rewards {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: right;
+}
+
+.reward-item {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.1);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   VISTA DE PRESENTACIÓN DEL JEFE (antes de iniciar la batalla)
+   ───────────────────────────────────────────────────────────── */
+
+.world-intro-view {
+  animation: fadeIn 0.4s ease-out;
+  padding-bottom: 8px;
+}
+
+/* Imagen grande del jefe, centrada, tomada de imagenes/<archivo-del-boss>.png */
+.boss-hero {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 340px;
+  margin: 14px 0;
+  border-radius: 18px;
+  border: 2px solid var(--gold);
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.15), rgba(0,0,0,0.4) 70%);
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.15);
+}
+
+.boss-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.boss-intro-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.intro-panel {
+  background: linear-gradient(135deg, var(--night-2), var(--night-3));
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.intro-panel-stats {
+  text-align: center;
+}
+
+.intro-boss-name {
+  font-family: var(--font-display-deco);
+  font-size: 19px;
+  color: var(--blood);
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px rgba(192, 57, 43, 0.35);
+}
+
+.intro-boss-resist {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--gold-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 6px;
+}
+
+.intro-boss-fury {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--blood);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.intro-hp-bar {
+  width: 100%;
+  height: 14px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: linear-gradient(90deg, #8B2E2E, #C0392B, #8B2E2E);
+  background-size: 200% 100%;
+  animation: infiniteShimmer 2.5s linear infinite;
+}
+
+.intro-hp-label {
+  font-family: var(--font-display);
+  font-size: 10px;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.intro-panel-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.intro-boss-desc {
+  font-size: 12px;
+  color: var(--ink-dim);
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+}
+
+/* Botón principal — deshabilitado hasta elegir un campeón */
+.btn-start-battle {
+  display: block;
+  width: 100%;
+  background: var(--night-2);
+  border: 2px solid var(--line);
+  color: var(--ink-dim);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 14px;
+  border-radius: 14px;
+  cursor: not-allowed;
+  transition: all 0.25s ease;
+  margin-bottom: 6px;
+}
+
+.btn-start-battle.ready {
+  border-color: var(--gold);
+  color: var(--night);
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.4);
+}
+
+.btn-start-battle.ready:active {
+  transform: scale(0.97);
+}
+
+.intro-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink-dim);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.intro-champs-title {
+  margin-top: 4px;
+}
+
+.intro-champs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.intro-champ-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--night-2);
+  border: 2px solid var(--card-color, var(--gold));
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.intro-champ-card:active {
+  transform: scale(0.96);
+}
+
+.intro-champ-card.selected {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.55), 0 0 16px rgba(212, 175, 55, 0.5);
+}
+
+.ic-art {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.ic-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ic-art-emoji {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.ic-check {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--night);
+  font-size: 11px;
+  font-weight: 700;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-champ-card.selected .ic-check {
+  display: flex;
+}
+
+.ic-name {
+  font-family: var(--font-display);
+  font-size: 9px;
+  color: var(--gold-soft);
+  text-align: center;
+  font-weight: 600;
+}
+
+.ic-role {
+  font-size: 10px;
+}
+
+.ic-level {
+  font-family: var(--font-display);
+  font-size: 8px;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+.ic-atk {
+  font-family: var(--font-display);
+  font-size: 9px;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.1);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.intro-footer-banner {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.intro-footer-banner p {
+  font-size: 11px;
+  color: var(--ink-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   VISTA DE COMBATE
+   ───────────────────────────────────────────────────────────── */
+
+.battle-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.battle-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--line);
+}
+
+.battle-back-btn {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.battle-back-btn:active {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--gold);
+}
+
+.battle-header h2 {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gold-soft);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Panel de daño acumulado / recompensa estimada / retirada */
+.battle-stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.stats-info {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stat-chip {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--ink-dim);
+  background: rgba(212, 175, 55, 0.08);
+  padding: 4px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.stat-chip b {
+  color: var(--gold-soft);
+}
+
+.btn-retreat {
+  background: rgba(192, 57, 43, 0.15);
+  border: 1px solid var(--blood);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 11px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.btn-retreat:active {
+  transform: scale(0.96);
+  background: rgba(192, 57, 43, 0.3);
+}
+
+/* Arena de combate */
+.battle-arena {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 12px;
+  min-height: 280px;
+  position: relative;
+}
+
+.battle-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Lado del boss */
+.boss-side {
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.boss-info {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.boss-name {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--blood);
+  text-align: center;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.boss-status {
+  font-family: var(--font-display);
+  font-size: 9px;
+  color: var(--gold-soft);
+  text-align: center;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  opacity: 0.85;
+}
+
+/* Indicador de furia: crece a medida que le sacan vida al jefe */
+.boss-fury {
+  font-family: var(--font-display);
+  font-size: 10px;
+  color: var(--blood);
+  text-align: center;
+  letter-spacing: 0.4px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.boss-hp-bar {
+  width: 100%;
+  height: 20px;
+  background: var(--night);
+  border: 1px solid var(--blood);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.hp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8B2E2E, #C0392B);
+  transition: width 0.4s ease;
+}
+
+/* Vida infinita del jefe: barra siempre llena con brillo animado */
+.hp-fill.infinite {
+  width: 100% !important;
+  background: linear-gradient(90deg, #8B2E2E, #C0392B, #8B2E2E);
+  background-size: 200% 100%;
+  animation: infiniteShimmer 2.5s linear infinite;
+}
+
+@keyframes infiniteShimmer {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.hp-text {
+  font-size: 10px;
+  color: var(--ink-dim);
+  text-align: center;
+  font-family: var(--font-display);
+}
+
+.boss-art {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  background: radial-gradient(circle at 50% 30%, rgba(192, 57, 43, 0.2), transparent 70%);
+  border: 2px solid var(--blood);
+  border-radius: 12px;
+}
+
+.boss-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.boss-art.attack-animation {
+  animation: attackBob 0.6s ease-out;
+}
+
+@keyframes attackBob {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-12px); }
+  40% { transform: translateX(12px); }
+  60% { transform: translateX(-8px); }
+}
+
+/* Separador */
+.battle-divider {
+  font-size: 24px;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+/* Lado del jugador */
+.player-side {
+  align-items: center;
+  width: 100%;
+}
+
+/* Estado del campeón en combate */
+.player-info {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.player-name {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--gold-soft);
+  text-align: center;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.player-hp-bar {
+  width: 100%;
+  height: 20px;
+  background: var(--night);
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.hp-fill-player {
+  height: 100%;
+  background: linear-gradient(90deg, #2E8B57, #3CB371);
+  transition: width 0.4s ease;
+}
+
+.team-selector {
+  width: 100%;
+}
+
+.team-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--ink-dim);
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.team-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.battle-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--night-2);
+  border: 2px solid var(--card-color, var(--gold));
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.battle-card:active {
+  transform: scale(0.95);
+  background: var(--night-3);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+}
+
+.battle-card.attacking {
+  animation: attackJump 0.6s ease-out;
+}
+
+@keyframes attackJump {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-20px); }
+  60% { transform: translateY(0); }
+}
+
+/* Miniatura real de la carta (imagen del personaje, con emoji como respaldo) */
+.bc-art {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.bc-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bc-art-emoji {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.bc-name {
+  font-family: var(--font-display);
+  font-size: 9px;
+  color: var(--gold-soft);
+  text-align: center;
+  font-weight: 600;
+}
+
+.bc-role {
+  font-size: 10px;
+}
+
+.bc-level {
+  font-family: var(--font-display);
+  font-size: 8px;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+.bc-atk {
+  font-family: var(--font-display);
+  font-size: 9px;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.1);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* Barra de vida individual de cada héroe durante el combate en grupo */
+.bc-hp-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--night);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.bc-hp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2E8B57, #3CB371);
+  transition: width 0.4s ease;
+}
+
+.bc-hp-text {
+  font-family: var(--font-display);
+  font-size: 8px;
+  color: var(--ink-dim);
+}
+
+/* Tarjeta ya no es clickeable: todo el equipo lucha a la vez */
+.battle-card {
+  cursor: default;
+}
+
+.battle-card:active {
+  transform: none;
+}
+
+/* Carta ya eliminada en este combate: ya no participa */
+.battle-card.defeated {
+  opacity: 0.35;
+  filter: grayscale(0.85);
+  cursor: not-allowed;
+}
+
+.bc-defeated-tag {
+  font-family: var(--font-display);
+  font-size: 8px;
+  color: var(--blood);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Log de combate */
+.battle-log {
+  flex: 1;
+  background: var(--night-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin: 0 12px 12px;
+  padding: 12px;
+  font-size: 11px;
+  color: var(--ink-dim);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 120px;
+}
+
+.log-entry {
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 2px solid var(--gold);
+  border-radius: 4px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Resultado de combate */
+.battle-result {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 6, 20, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+
+.result-content {
+  background: var(--night-2);
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  padding: 28px 24px;
+  text-align: center;
+  max-width: 300px;
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.result-victory {
+  font-family: var(--font-display-deco);
+  font-size: 32px;
+  color: var(--gold);
+  margin-bottom: 16px;
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+.result-defeat {
+  font-family: var(--font-display-deco);
+  font-size: 32px;
+  color: var(--blood);
+  margin-bottom: 16px;
+  text-shadow: 0 0 12px rgba(192, 57, 43, 0.4);
+}
+
+.rewards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.reward-row {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--ink);
+  background: rgba(212, 175, 55, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+.defeat-message {
+  color: var(--ink-dim);
+  font-size: 13px;
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  border: none;
+  color: var(--night);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.btn-primary:active {
+  transform: scale(0.96);
+}
+
+/* Estilos heredados (compatibilidad) */
+.list-row.locked-world {
+  opacity: 0.5;
+  filter: grayscale(0.6);
+  cursor: not-allowed;
+}
+
+.lr-lock {
+  font-size: 16px;
+  margin-left: 4px;
+}
+
+/* Responsive */
+@media (max-height: 600px) {
+  .battle-arena {
+    min-height: 200px;
+  }
+
+  .boss-art {
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+  }
+
+  .battle-log {
+    max-height: 80px;
+  }
+}
