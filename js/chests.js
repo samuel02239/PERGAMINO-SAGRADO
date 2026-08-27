@@ -48,7 +48,7 @@ function chestImgTag(card, className) {
 
 const ChestFlow = {
   // Cofre del Rey: precio duplicado de 50 a 100 gemas.
-  cost: { wood: { gold: 1000 }, silver: { gold: 4000 }, king: { gems: 500 } },
+  cost: { wood: { gold: 1000 }, silver: { gold: 4000 }, king: { gems: 1000 } },
 
   // Costo total para abrir `count` cofres de un tipo (por defecto: el costo
   // unitario multiplicado, sin descuento).
