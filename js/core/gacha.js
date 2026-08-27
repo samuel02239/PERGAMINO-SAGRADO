@@ -4,7 +4,7 @@
  * Lee directamente el arreglo global CARDS de js/data/cards.js.
  */
 const CHEST_ODDS = {
-  wood:   { COMMON: 0.60, UNCOMMON: 0.30, RARE: 0.10 },
+  wood:   { COMMON: 0.80, UNCOMMON: 0.15, RARE: 0.5 },
   silver: { COMMON: 0.35, UNCOMMON: 0.35, RARE: 0.22, EPIC: 0.08 },
   king:   { RARE: 0.40, EPIC: 0.40, LEGENDARY: 0.18, MYTHIC: 0.02 },
 };
